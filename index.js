@@ -232,9 +232,11 @@ function firstNamesAllCaps(runners) {
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
 function getRunnersByTShirtSize(runners, tShirtSize) {
-  const shirtOrder = runners.filter((tShirtSize => {
-    return tShirtSize.shirt_size === 'S' && tShirtSize.shirt_size === 'M' && tShirtSize.shirt_size === 'L' && tShirtSize.shirt_size === 'XL' && tShirtSize.shirt_size === '2XL' && tShirtSize.shirt_size === '3XL'
-  }));
+  const shirtOrder = runners.filter((item) => {
+    return item.shirt_size === tShirtSize
+  });
+
+
   return shirtOrder;
 }
 
@@ -310,20 +312,27 @@ function counterMaker() {
 */
 function counterMakerWithLimit(max) {
   let count = 0;
-  let maxCount = max;
-  if (count === maxCount) {
-    return count = 0;
-
-  }
-
-  function counter() {
-
-
-    return count++
-  }
-
-  return counter
+  return () => (count <= max ? count++ : ((count = 0), count++));
 }
+
+// function counterMakerWithLimit(max) {
+//   let count = 0;
+
+//    function counter() {
+//     if (count <= max) {
+//       return count++;
+//     } else {
+//       count = 0 
+//       return count++;
+
+//     }
+
+//   };
+// return counter; 
+
+// }
+
+
 
 
 
